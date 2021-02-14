@@ -1,0 +1,110 @@
+
+<div class="align-content-lg-end">
+  <button type="button" ngxPrint printSectionId="container-printer" data-original-title="Peso Vehículo" class="btn waves-effect waves-light btn-outline-success ml-2"> <i class="fa fa-print text-inverse mr-0" aria-hidden="true"></i> </button>
+</div>
+<div class="ui-outputpanel ui-widget" style="font-size:11px !important; size:11px !important;width:250px;margin:auto" wfd-id="418">
+
+  <div id="container-printer">
+        <table  class="ui-panelgrid ui-widget ui-panelgrid-blank" style="width:100%;text-align: left" role="grid">
+          <tbody>
+            <tr class="ui-widget-content" role="row">
+              <td role="gridcell" class="ui-panelgrid-cell columna60">
+                <label class="ui-outputlabel ui-widget" wfd-id="427">
+                  <img [src]="sanitizer.bypassSecurityTrustUrl('/assets/recircular.png')" width="100px">
+                </label>
+              </td>
+            <td role="gridcell" class="ui-panelgrid-cell columna40"></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="ui-outputpanel ui-widget" style="text-align: left;" wfd-id="420">
+          <table  class="ui-panelgrid ui-widget ui-panelgrid-blank " style="width:100%;" role="grid">
+            <tbody>
+              <tr class="ui-widget-content" role="row">
+                <td role="gridcell" class="ui-panelgrid-cell columna100">
+                <div  class="ui-outputpanel ui-widget font-t10" wfd-id="426">
+                <b>NIT</b> {{factura?.dtEcassucursalid?.dtEcaId?.nit}}</div></td>
+              </tr>
+              <tr class="ui-widget-content" role="row"><td role="gridcell" class="ui-panelgrid-cell columna100">
+                <div  class="ui-outputpanel ui-widget font-t10" wfd-id="425">
+                <b>DIR</b>{{factura?.tercero?.direccion}}<b>/TEL:</b> {{factura?.tercero?.telefono}}</div></td>
+              </tr>
+              <tr class="ui-widget-content" role="row">
+                <td role="gridcell" class="ui-panelgrid-cell columna100">
+                  <div class="ui-outputpanel ui-widget font-t10" wfd-id="424">{{factura?.tercero?.dttercerojuridico.razonSocial}}-{{factura.tercero?.documento}}</div>
+                </td>
+              </tr>
+              <tr class="ui-widget-content" role="row">
+                <td role="gridcell" class="ui-panelgrid-cell columna100">
+                  <div id="frmApp:tabPrinter:j_idt397" class="ui-outputpanel ui-widget font-t10" wfd-id="423">
+                    <b>Factura(Compra)</b> {{factura.consecutivo}}
+                  </div>
+                </td>
+              </tr>
+              <tr class="ui-widget-content" role="row">
+                <td role="gridcell" class="ui-panelgrid-cell columna100">
+                  <div id="frmApp:tabPrinter:j_idt399" class="ui-outputpanel ui-widget font-t10" wfd-id="422">
+                    <b>Operación de Bascula</b>ADMON</div>
+                </td>
+              </tr>
+              <tr class="ui-widget-content" role="row">
+                <td role="gridcell" class="ui-panelgrid-cell columna100">
+                  <div class="ui-outputpanel ui-widget font-t10" wfd-id="421">
+                    <b>Fecha y Hora:</b> {{factura.fecha}} {{factura.hora}}</div>
+                  </td>
+              </tr>
+              <tr class="ui-widget-content" role="row">
+                <td role="gridcell" class="ui-panelgrid-cell columna100">
+                  <div class="ui-outputpanel ui-widget font-t10" wfd-id="421">
+                    <b>Placas:</b> {{factura.placavehiculo}}</div>
+                  </td>
+              </tr>
+              <tr class="ui-widget-content" role="row">
+                <td role="gridcell" class="ui-panelgrid-cell columna100">
+                  <div class="ui-outputpanel ui-widget font-t10" wfd-id="421">
+                    <b>Peso Ingreso</b> {{factura.pesovehiculo}}</div>
+                  </td>
+              </tr>
+              <tr class="ui-widget-content" role="row">
+                <td role="gridcell" class="ui-panelgrid-cell columna100">
+                  <div class="ui-outputpanel ui-widget font-t10" wfd-id="421">
+                    <b>Peso Salida:</b> {{factura.pesosalida}}</div>
+                  </td>
+              </tr>
+              <tr class="ui-widget-content" role="row">
+                <td role="gridcell" class="ui-panelgrid-cell columna100">
+                  <hr class="ui-separator ui-state-default ui-corner-all">
+                </td>
+              </tr>
+              </tbody>
+            </table>
+        </div>
+        <div class="DetallePost" wfd-id="419">
+          <table style="width: 100%;border:none" class="font-t10" cellpadding="-1">
+              <tbody>
+                <tr style="border-bottom:1px solid gray; text-align:left">
+                  <th style="width:5%" class="td4 font-t10"></th>
+                  <th style="width:30%;" class="td4 font-t10">Material</th>
+                  <th style="width:15%;" class="td4 font-t10">Peso V</th>
+                  <th style="width:15%;" class="td4 font-t10">Vl Uni</th>
+                  <th style="width:15%;" class="td4 font-t10">Peso</th>
+                  <th style="width:20%;" class="td4 font-t10">Sub Total</th>
+                </tr>
+                <tr style="border:1px solid gray" *ngFor="let item of factura?.dtfacturadetalleList; let i = index">
+                    <td class="td4 font-t11"> {{ i + 1 }}</td>
+                    <td class="td4 font-t11">{{item.materialid.material.material}}</td>
+                    <td style="text-align: right !important;width: 10px !important" class="td4 font-t11 pr-1">{{item.pesovehiculo}}</td>
+                    <td style="text-align: right !important;width: 20px" class="td4 font-t11 pr-1">{{item.valor}}</td>
+                    <td style="text-align: right !important;width: 20px" class="td4 font-t11 pr-1">{{item.cantidad}}</td>
+                    <td style="text-align: right !important;width: 20px" class="td4 font-t11 pr-1">{{item.cantidad * item.valor}}</td>
+                </tr>
+                <tr>
+                    <th colspan="4" class="td4 font-t11" style="text-align:right;border-top: 1px solid gray">Total</th>
+                    <td class="td5 font-t11" style="text-align:right;border-top: 1px solid gray">{{sumTotalPeso()}}</td>
+                    <td  class="font-t11" style="text-align: right !important;border-top: 1px solid gray">{{sumTotal()}}</td>
+                </tr>
+              </tbody>
+          </table>
+      </div>
+    </div>
+</div>

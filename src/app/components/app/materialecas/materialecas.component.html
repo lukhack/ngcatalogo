@@ -1,0 +1,18 @@
+<h5>{{titulo}}</h5>
+
+<ng-select
+  class="select2 form-control custom-select"
+  appearance="outline"
+  [items]="materialecaList"
+  bindLabel="material.material"
+  bindValue="material.material"
+  [searchFn]="customSearchFn"
+  (change)="onChange($event)">
+
+  <ng-template class="select2-erj1-results"  ng-option-tmp let-item="item">
+    {{item.material.codcorto}} ({{item.material.material}})
+  </ng-template>
+
+</ng-select>
+
+

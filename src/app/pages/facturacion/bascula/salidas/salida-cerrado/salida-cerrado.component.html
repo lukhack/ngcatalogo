@@ -1,0 +1,158 @@
+<div class="row">
+  <div class="col-md-12">
+      <div class="card">
+          <div class="card-body">
+
+              <h4 class="card-title">Facutras cerradas</h4>
+              <h6 class="card-subtitle">En este modulo podremos observar las facutras de venta ya finalizadas</h6>
+              <!-- Nav tabs -->
+              <div class="row">
+                  <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Pendientes por pagar</h4>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" >
+                                        <thead>
+                                            <tr class="uk-text-bold">
+                                                <th>FacturaNo</th>
+                                                <th>Fecha</th>
+                                                <th>Fecha Pago</th>
+                                                <th>Hora</th>
+                                                <th>Tercero</th>
+                                                <th>Placas</th>
+                                                <th>Peso Vehículo(Kg)</th>
+                                                <th>Descripción</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let item of getFacturaInState(2)" ng-show="showTableLoad">
+                                                <td>{{item.consecutivo}}</td>
+                                                <td>{{fecha(item.fecha)}}</td>
+                                                <td>{{item.hora}}</td>
+                                                <td>{{item.tercero.dttercerojuridico.razonSocial }}</td>
+                                                <td>{{item.placavehiculo}}</td>
+                                                <td>{{item.pesovehiculo}}</td>
+                                                <td>{{item.pesosalida}}</td>
+                                                <td>{{item.descripcion}}</td>
+                                                <td class="text-nowrap">
+                                                  <button type="button"   data-toggle="modal" data-target="#pago-modal"    (click)="selectObject(item,2)" data-original-title="Peso Vehículo" class="btn waves-effect waves-light btn-outline-warning ml-1"> <i class="fa fa-eye text-inverse mr-0"></i> </button>
+                                                  <button type="button" data-toggle="modal" data-target="#print-modal"    (click)="selectObject(item,1)" data-original-title="Peso Vehículo" class="btn waves-effect waves-light btn-outline-success ml-2"> <i class="fa fa-print text-inverse mr-0" aria-hidden="true"></i> </button>
+                                                </td>
+                                              </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+<div id="pago-modal" class="modal fade show" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" wfd-id="13" aria-hidden="true">
+  <div class="modal-dialog" wfd-id="172">
+      <div class="modal-content" wfd-id="173">
+
+          <div class="modal-header" wfd-id="181">
+              <h4 class="modal-title">Pagar Factura</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true" wfd-id="157">×</button>
+          </div>
+
+          <flash-messages></flash-messages>
+
+          <div class="modal-body" wfd-id="175">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-6">
+                        <div wfd-id="181" class="mb-4">
+                          <h5 class="modal-title" >
+                          <b>No. </b><span style="color:red;font-weight:bold;">{{dtFactura.consecutivo}}</span></h5>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                      <div wfd-id="181" class="mb-4">
+                        <h5 class="modal-title" >
+                        <b>Fecha y Hora </b><span >{{dtFactura.fecha}} {{dtFactura.hora}}</span></h5>
+                      </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                      <div wfd-id="181" class="mb-4">
+                        <h5 class="modal-title" >
+                        <b>Nit o Cc. </b><span ng-show="dtFactura !== undefined" >{{isUndefined(dtFactura.tercero)?dtFactura.tercero.documento:""}} </span></h5>
+                      </div>
+                    </div>
+                </div>
+                <div class="row">
+                  <div class="col-12">
+                    <div wfd-id="181" class="mb-4">
+                      <h5 class="modal-title" >
+                      <b>Razon Social </b><span ng-show="dtFactura !== undefined">{{isUndefined(dtFactura.tercero)?dtFactura.tercero.dttercerojuridico.razonSocial:""}} </span></h5>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div wfd-id="181" class="mb-4">
+                      <h5 class="modal-title" >
+                      <b>Peso salida</b><span ng-show="dtFactura !== undefined">{{dtFactura.pesosalida}} </span></h5>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12">
+                      <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr class="uk-text-bold">
+                                    <th>Referencia</th>
+                                    <th>Material</th>
+                                    <th>Descripción</th>
+                                    <th>Cantidad(Kg) </th>
+                                    <th>Valor($) </th>
+                                    <th>SubTotal($)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of dtFactura.dtfacturadetalleList">
+                                    <td>{{item.materialid.material.codcorto}}</td>
+                                    <td>{{item.materialid.material.material}}</td>
+                                    <td>{{item.descripcion}}</td>
+                                    <td>{{item.cantidad}}</td>
+                                    <td>{{item.valor}}</td>
+                                    <td>{{subtotal(item)}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <input type="hidden" id="openModalButton"  data-toggle="modal"  data-target="#peso-modal" />
+                      </div>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+  </div>
+</div>
+
+
+<div id="print-modal" class="modal fade show" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" wfd-id="13" aria-hidden="true">
+  <div class="modal-dialog" wfd-id="172">
+      <div class="modal-content" wfd-id="173">
+        <div class="modal-header" wfd-id="181">
+            <h4 class="modal-title">Pagar Factura</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true" wfd-id="157">×</button>
+        </div>
+        <div class="modal-body" wfd-id="175">
+          <div class="container-fluid">
+            <app-print [factura]="dtFactura"></app-print>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+

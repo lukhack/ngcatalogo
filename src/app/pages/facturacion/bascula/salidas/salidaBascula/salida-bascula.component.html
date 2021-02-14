@@ -1,0 +1,182 @@
+
+<div class="row animated fadeIn fast">
+
+</div>
+
+<div class="row animated fadeIn fast">
+  <div class="col-12">
+
+     <!-- <div class="alert alert-info text-center">
+        <h4 class="alert-heading">Cargando</h4>
+        <i class="fa fa-spin fa-refresh fa-2x"></i>
+        <p class="mb-0">Por favor espere</p>
+      </div>
+     -->
+  </div>
+</div>
+<flash-messages></flash-messages>
+<div class="row">
+  <div class="col-6">
+    <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-12">
+              <app-terceros  (selectedUser)="onChangeTercero($event)" [selecTercero]="dtFactura.tercero" (change)="onChangeTercero($event)"></app-terceros>
+            </div>
+            <div class="col-12  mt-2">
+              <div class="input-group">
+                <span class="input-group-addon " style="width:230px;"><b>Placas Vehículo</b></span>
+                <input type="text" class="form-control placas" name="placasVehiculo" [(ngModel)]="dtFactura.placavehiculo" aria-label="Amount (to the nearest dollar)">
+              </div>
+            </div>
+            <div class="col-12  mt-2">
+              <div class="input-group">
+                <span class="input-group-addon" style="width:230px;"><b>Peso Vehículo Ingreso</b></span>
+                <input type="number" class="form-control" [readOnly]="getEstado()" name="pesovehiculo" [(ngModel)]="dtFactura.pesovehiculo" step="any" aria-label="Amount (to the nearest dollar)">
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+    <div class="col-6">
+      <form>
+          <div class="card">
+              <div class="card-body">
+                <div class="row mb-1">
+                    <div class="col-12">
+                        <app-materialecas (selectMaterialeca)="onChangeMaterial($event)"></app-materialecas>
+                    </div>
+
+                      <div class="col-12  mt-2">
+                        <div class="input-group">
+                          <span class="input-group-addon" style="width:230px;"><b>Costo Material</b></span>
+                          <input type="number" name="valor" class="form-control" [ngModel]="dtFacutraDetalle.valor" step="any" aria-label="Amount (to the nearest dollar)">
+                          <span class="input-group-addon" ><b>$</b></span>
+                        </div>
+                      </div>
+              </div>
+              <div style="width:100%;text-align:right" >
+                <button type="button" (click)="onAddMaterialClick(dtFacutraDetalle)"  class="btn btn-success" wfd-id="502"><i class="fa fa-check"></i> Añadir</button>
+              </div>
+            </div>
+          </div>
+    </form>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Detalle de bascula</h4>
+                <h6 class="card-subtitle">Datos de la basculas tomados despues de realizar el descargue</h6>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr class="uk-text-bold">
+                                <th>Referencia</th>
+                                <th>Material</th>
+                                <th>Descripción</th>
+                                <th>Cantidad(Kg) </th>
+                                <th>Valor($) </th>
+                                <th>SubTotal($)</th>
+                                <th>Accion</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of dtFactura.dtfacturadetalleList">
+                                <td>{{item.materialid.material.codcorto}}</td>
+                                <td>{{item.materialid.material.material}}</td>
+                                <td>{{item.descripcion}}</td>
+                                <td>{{item.cantidad}}</td>
+                                <td>{{item.valor}}</td>
+                                <td>{{subtotal(item)}}</td>
+
+                                <td class="text-nowrap">
+                                  <button type="button"   (click)="openModalPeso(item)" data-original-title="Peso Vehículo" class="btn waves-effect waves-light btn-success"> <i class="fa fa-truck text-inverse m-r-10"></i> </button>
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+                    <input type="hidden" id="openModalButton"  data-toggle="modal"  data-target="#peso-modal" />
+                </div>
+
+            </div>
+        </div>
+  </div>
+</div>
+<div class="button-save">
+  <button type="button" (click)="addFactura()" class="btn btn-success btn-circle btn-xl" wfd-id="423"><i class="fa fa-link"></i> </button>
+</div>
+
+<div id="peso-modal" class="modal fade show" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" wfd-id="13" aria-hidden="true">
+  <div class="modal-dialog" wfd-id="172">
+      <div class="modal-content" wfd-id="173">
+          <div class="modal-header" wfd-id="181">
+              <h4 class="modal-title">Añadir cantidad de material</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true" wfd-id="157">×</button>
+          </div>
+
+
+          <div class="modal-body" wfd-id="175">
+              <div wfd-id="181" class="mb-4" ng-show="isUndefined(selectDacutraDetalle)">
+                <h4 class="modal-title" ng-show="selectDacutraDetalle !== undefined"><b>Material: </b><span style="color:red;font-weight:bold;">{{isUndefined(selectDacutraDetalle.materialid)?selectDacutraDetalle.materialid.material.material:""}}</span></h4>
+              </div>
+              <form wfd-id="176">
+                  <div class="form-group" wfd-id="179">
+                      <label for="recipient-name" class="control-label" wfd-id="180">Peso del material de cargue</label>
+                      <input type="text" name="IngPesoVehiculo" [(ngModel)]="pesoMaterial" class="form-control" id="recipient-name" wfd-id="142">
+                  </div>
+
+                  <div class="alert alert-danger" [hidden]="!showDanger" wfd-id="43"> <i class="ti-user"></i>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close" wfd-id="186"> <span aria-hidden="true" wfd-id="44">×</span> </button>
+                  </div>
+              </form>
+
+            </div>
+          <div class="modal-footer"  wfd-id="174">
+              <button type="button" id="closeModalPeso" class="btn btn-default waves-effect" data-dismiss="modal" wfd-id="156">Cerrar</button>
+              <button type="button" (click)="addPeso()" class="btn btn-danger waves-effect waves-light" wfd-id="155">Añadir peso</button>
+          </div>
+      </div>
+  </div>
+</div>
+
+<div id="descuento-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none;" wfd-id="13" aria-hidden="true">
+  <form>
+    <div class="modal-dialog" wfd-id="172">
+        <div class="modal-content" wfd-id="173">
+            <div class="modal-header" wfd-id="181">
+                <h4 class="modal-title">Descuento material</h4>
+                <button type="button"  class="close" data-dismiss="modal" aria-hidden="true" wfd-id="157">×</button>
+            </div>
+
+
+            <div class="modal-body" wfd-id="175">
+                <div wfd-id="181" class="mb-4" ng-show="isUndefined(selectDacutraDetalle)">
+                  <h4 class="modal-title" ng-show="selectDacutraDetalle !== undefined"><b>Material: </b><span style="color:red;font-weight:bold;">{{isUndefined(selectDacutraDetalle.materialid)?selectDacutraDetalle.materialid.material.material:""}}</span></h4>
+                </div>
+                <form wfd-id="176">
+                    <div class="form-group" wfd-id="179">
+                        <label for="recipient-name" class="control-label" wfd-id="180">Descuento(%)</label>
+                        <input type="number" maxlength="2" name="Dsporcentaje" [(ngModel)]="descuento.porcentaje" class="form-control" id="recipient-name" wfd-id="142">
+                    </div>
+                    <div class="form-group" wfd-id="177">
+                        <label for="message-text" class="control-label" wfd-id="178">Observación:</label>
+                        <textarea class="form-control"  name="Dsdescripcion" name="descripcion" [(ngModel)]="descuento.descripcion" id="message-text" wfd-id="147"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer" wfd-id="174">
+                <button type="button"  class="btn btn-default waves-effect" data-dismiss="modal" wfd-id="156">Close</button>
+                <button type="button" (click)="addDescuento()" data-dismiss="modal" class="btn btn-danger waves-effect waves-light" wfd-id="155">Añadir</button>
+            </div>
+        </div>
+    </div>
+  </form>
+</div>
+
+

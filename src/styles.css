@@ -1,0 +1,42 @@
+
+
+
+.fast{
+    -webkit-animation-duration: 0.3s;
+    animation-duration: 0.3s;
+    -webkit-animation-fill-mode:both;
+    animation-fill-mode:both
+}
+
+
+#themecolors .selector{
+   cursor: pointer;
+}
+
+
+.ng-dropdown-panel .scroll-host{
+  background-color: white !important;
+  padding: 1px;
+  margin-top: 12px;
+  margin-left: -15px;
+  border: 1px solid rgba(0,0,0,.15);
+  border-radius: .25rem;
+}
+
+.ng-option{
+  padding: 10px;
+}
+
+.ng-option-marked{
+  margin-top: 10px !important;
+  padding: 10px;
+  background-color: #398bf7;
+  color: white;
+}
+
+
+.preloader{
+  background-color: rgba(0,0,0,.15) !important;
+}
+
+
