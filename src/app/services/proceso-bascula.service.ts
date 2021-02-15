@@ -1,7 +1,6 @@
 import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { DataServices } from './data.services';
-import { DtFactura } from './../components/app/models/DtFactura.models';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -9,15 +8,16 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ProcesoBasculaService {
+  constructor(private  http_client: HttpClient, private dataservice: DataServices<any>) {
 
+  }
+
+/*
   objs: Array<DtFactura> = [];
   obj: DtFactura;
   showDialog: boolean = false;
   private modelhttp = 'facturars/';
 
-  constructor(private  http_client: HttpClient, private dataservice: DataServices<DtFactura>) {
-
-  }
 
   ngOnInit(): void {
     console.log(this.modelhttp);
@@ -68,6 +68,6 @@ export class ProcesoBasculaService {
     return this.dataservice.update(this.modelhttp, obj).pipe(
       map((response: DtFactura) => response)
     );
-  }
+  }*/
 }
 

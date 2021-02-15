@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  //base_url: 'http://192.168.1.57:9090/backendAburraLimpio/apiRest'
-  base_url: 'http://localhost:9090/backendAburraLimpio/apiRest'
+  base_url: 'http://192.168.1.57:8000/backendAburraLimpio/apiRest'
+  //base_url: 'http://localhost:8000/backendAburraLimpio/apiRest'
 };
 
 /*
