@@ -1,6 +1,6 @@
 import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
-import { DataServices } from './data.services';
+import { DataServices } from './data.service';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -8,9 +8,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ProcesoBasculaService {
-  constructor(private  http_client: HttpClient, private dataservice: DataServices<any>) {
-
-  }
+  constructor(private  http_client: HttpClient, private dataservice: DataServices<any>) {}
 
 /*
   objs: Array<DtFactura> = [];

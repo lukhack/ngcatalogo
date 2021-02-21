@@ -1,20 +1,20 @@
-import { Injectable } from '@angular/core';
+import { CategoriaService } from './categoria.service';
+import { Injectable, OnInit } from '@angular/core';
+
+interface menu_int{
+  id:number,
+  url:string,
+  orden:0,
+  show:boolean
+}
+
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class SidebarService {
   public menu: any[]=[
-    {
-      titulo:'DashBoard',
-      icono: 'mdi mdi-gauge',
-      submenu:[
-        {titulo: 'Main', url:'/'},
-        {titulo: 'Progressbar', url:'progress'},
-        {titulo: 'Gráficas', url:'grafica1'},
-        {titulo: 'Promesas', url:'promesas'},
-        {titulo: 'rxjs', url:'rxjs'},]
-    },
     {
       titulo:'Facturacion',
       icono: 'mdi mdi-gauge',
@@ -39,6 +39,23 @@ export class SidebarService {
         },
       ]
     }
-  ]
-  constructor() { }
+  ];
+
+  constructor(private categoriSevice:CategoriaService) {
+
+
+  }
+
+  ngOnInit():void{
+      this.geCategorias();
+  }
+
+
+  geCategorias(){
+    console.log('pruebas de data');
+    this.categoriSevice.getAll().subscribe(x=>{
+        console.log('data',x);
+    });
+
+  }
 }

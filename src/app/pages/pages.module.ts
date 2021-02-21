@@ -1,5 +1,5 @@
 import { ProcesoBasculaService } from './../services/proceso-bascula.service';
-import { DataServices } from './../services/data.services';
+import { DataServices } from '../services/data.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
