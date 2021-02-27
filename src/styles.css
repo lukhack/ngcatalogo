@@ -1,4 +1,13 @@
-
+@font-face {
+  font-family: GothamPro;
+  src: url(assets/css/GothamPro-Bold.eot);
+  src: url(assets/css/GothamPro-Bold.woff2) format("woff2"),
+      url('assets/css/GothamPro-Bold.woff') format("woff"),
+      url('assets/css/GothamPro-Bold.ttf') format("truetype"),
+      url('assets/css/GothamPro-Bold.eot') format("embedded-opentype");
+  font-weight: 800;
+  font-style: normal
+}
 
 
 .fast{
@@ -37,6 +46,14 @@
 
 .preloader{
   background-color: rgba(0,0,0,.15) !important;
+}
+
+body{
+  font-family: Gotham, sans-serif;
+  font-weight: 300;
+  color: #313131;
+  font-size: 14px;
+  line-height: 20px;
 }
 
 

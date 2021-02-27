@@ -1,5 +1,9 @@
+import { map } from 'rxjs/operators';
+import { ActivatedRoute } from '@angular/router';
+import { DtCategoriaModels } from './../models/dtcatadolo.moldels';
 import { CategoriaService } from './categoria.service';
 import { Injectable, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 
 interface menu_int{
   id:number,
@@ -14,7 +18,14 @@ interface menu_int{
   providedIn: 'root'
 })
 export class SidebarService {
-  public menu: any[]=[
+  public menu: DtCategoriaModels[]=[];
+  public render:boolean=false;
+  public sede:number;
+
+  public tituloP:string="Catalogo";
+  public tituloS:string="Articulos";
+
+  /*public menu: any[]=[
     {
       titulo:'Facturacion',
       icono: 'mdi mdi-gauge',
@@ -39,23 +50,33 @@ export class SidebarService {
         },
       ]
     }
-  ];
+  ];*/
 
-  constructor(private categoriSevice:CategoriaService) {
 
+
+  constructor(private categoriSevice:CategoriaService,private route: ActivatedRoute) {
+    this.geCategorias();
 
   }
 
-  ngOnInit():void{
-      this.geCategorias();
+  ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+
   }
 
+  getArticulos():DtCategoriaModels[]{
+    return this.menu;
+  }
 
   geCategorias(){
-    console.log('pruebas de data');
-    this.categoriSevice.getAll().subscribe(x=>{
-        console.log('data',x);
-    });
+
+    return this.categoriSevice.getAll();
+
+  }
+
+
+  getRouter(){
 
   }
 }

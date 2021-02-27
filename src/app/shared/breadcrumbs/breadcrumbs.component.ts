@@ -1,3 +1,4 @@
+import { SidebarService } from './../../services/sidebar.service';
 import { filter, map } from 'rxjs/operators';
 import { ActivatedRoute, ActivationEnd, Router } from '@angular/router';
 import { Component, OnInit, OnDestroy } from '@angular/core';
@@ -10,19 +11,30 @@ import { pipe, Subscription } from 'rxjs';
   ]
 })
 export class BreadcrumbsComponent implements OnInit, OnDestroy {
-  public titulo="";
+  public tituloP="";
+  public tituloS="";
+
   public tituloSubcribe:Subscription;
-  constructor(private router: Router, private route: ActivatedRoute) {
-    console.log("ActivatedRoute"+ route.snapshot.children[0].data);
-    this.tituloSubcribe = this.gerRouterTitle().subscribe(({titulo}) =>{
+  constructor(private router: Router, private activatedRoute: ActivatedRoute,  public siderService:SidebarService) {
+    this.tituloP = this.siderService.tituloP;
+    this.tituloS = this.siderService.tituloS;
+
+    this.tituloSubcribe = this.gerRouterTitle().subscribe((data) =>{
       //={{titulo }}== data.titulo
-      console.log(this.titulo);
-      this.titulo = titulo
+      console.log('navegacion:t',data);
+      activatedRoute.data.subscribe(d => console.log('activeRoute:',d));
+
     });
+
+
    }
 
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log('comienzo')
+
+
+  }
 
   ngOnDestroy(): void {
     this.tituloSubcribe.unsubscribe();
@@ -33,7 +45,7 @@ export class BreadcrumbsComponent implements OnInit, OnDestroy {
       filter(event=> event instanceof ActivationEnd),
       filter((event:ActivationEnd) => event.snapshot.firstChild === null),
       map((event: ActivationEnd) => event.snapshot.data)
-    );
+    )
   }
 
 

@@ -12,6 +12,7 @@ import { PagesComponent } from './pages.component';
 import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { FlashMessagesModule } from 'angular2-flash-messages';
+import { CatalogoComponent } from './catalogo/catalogo.component';
 
 
 
@@ -20,6 +21,7 @@ import { FlashMessagesModule } from 'angular2-flash-messages';
   declarations: [
     DashboardComponent,
     PagesComponent,
+    CatalogoComponent,
   ],
   exports: [
     DashboardComponent,

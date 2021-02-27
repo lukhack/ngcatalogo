@@ -1,3 +1,4 @@
+import { CatalogoComponent } from './catalogo/catalogo.component';
 
 
 import { NgModule } from '@angular/core';
@@ -7,21 +8,20 @@ import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes: Routes = [
-
-    {
-        path: 'app',
-        component: PagesComponent,
-        children: [
-          { path: '', component: DashboardComponent, data:{titulo: 'Dashboard'} },
-          { path: 'Bascula', component: DashboardComponent, data:{titulo: 'Bascula'},
-              children:[
-                { path: 'IngresoMateriales',component: DashboardComponent, data:{titulo: 'Ingreso Materiales'} },
-              ]
-
-          },
+{
+      path: 'catalogo',
+      component: PagesComponent,
+      children: [
+        { path: 'articulos',  data:{titulo: 'Catalogo'},
+            children:[
+              { path: ':catalogo/:sesion/:sede/:catalodo/:sesionid',component: CatalogoComponent, data:{titulo: 'Articulos'} },
+            ]
+        },
+        { path: ':sede', component: CatalogoComponent, data:{titulo: 'Catalogo'} },
+        { path: '', component: CatalogoComponent, data:{titulo: 'Catalogo'} },
 
       ]
-  },
+},
 
 ];
 

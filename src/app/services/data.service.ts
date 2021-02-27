@@ -9,7 +9,7 @@ const base_url = environment.base_url
 export class DataServices<T> implements OnInit {
   respuestEvent = new EventEmitter();
 
-  httpUrl = `${base_url}/`;
+  httpUrl = `${base_url}`;
   //httpUrl = 'http://192.168.1.62:9090/FabricaBackend/apiRest/';
   type = '.json';
 

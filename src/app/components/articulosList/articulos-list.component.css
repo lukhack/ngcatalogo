@@ -1,0 +1,84 @@
+.container-article {
+  text-align: center;
+  width: 100%;
+}
+
+.content-article-box {
+  background-color: white;
+  width: 100%;
+  /*-webkit-box-shadow: 3px 3px 2px 0px rgba(0,0,0,0.05);
+  -moz-box-shadow: 3px 3px 2px 0px rgba(0,0,0,0.05);
+  box-shadow: 3px 3px 2px 0px rgba(0,0,0,0.05);*/
+}
+
+.anamatePicture2 {
+  opacity: 50;
+  display: block;
+  left: 1;
+  height: 350px;
+  width: 100%;
+  min-width:280px;
+  max-width: 280px;
+  border: 10px solid white;
+  background-size: 100% 100% !important;
+  background-repeat: no-repeat !important;
+  margin: auto;
+  background-position: top center !important;
+  object-fit: cover;
+  object-position: center;
+}
+
+
+.btnWhatsapp{
+  font-family: GothamPro;
+  background-color:#46a049;
+  color:white;
+  border-radius: 5px;
+  font-size: 14px;
+  letter-spacing: 0.8px;
+  padding: 9px 30px 7px 30px;
+  border: none;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  width:105px;
+}
+
+.caption-description h5{
+  font-family: sans-serifs;
+  color: gray;
+  font-size:  15px;
+  transition: all 0.3s ease-out 0s;
+  font-weight: 300 !important;
+  letter-spacing: 0.5px;
+  text-transform: capitalize;
+  white-space: nowrap;
+}
+
+.caption h4{
+  font-family: GothamPro;
+  color: #000;
+  font-size:  18px;
+  transition: all 0.3s ease-out 0s;
+  font-weight: 300 !important;
+  letter-spacing: 0.5px;
+  text-transform: capitalize;
+  white-space: nowrap;
+}
+
+.detalle-valor{
+  color: #181818;
+  letter-spacing: 0.5px;
+}
+
+h4 {
+  font-size: 15px;
+}
+
+.caption h4 {
+  white-space: nowrap;
+}
+
+
+.input-group-addon:first-child {
+  border-right: 0;
+}

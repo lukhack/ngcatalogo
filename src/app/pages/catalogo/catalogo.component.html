@@ -1,0 +1,51 @@
+<div  class="container bg-white p-1 mb-2"  >
+  <div class="row cate-border">
+    <div class="col-md-2 col-sm-3 col-xs-5" >
+      <div class="btn-group-sm ml-1" >
+        <button type="button" (click)="showgrid(false)" id="grid-view" class="btn bg-white ml-1 b-all b-b active" data-toggle="tooltip" title="" data-original-title="Grid">
+          <i class="fa fa-th" aria-hidden="true"></i>
+        </button>
+        <button type="button" id="list-view"(click)="showgrid(true)"  class="btn bg-white ml-1 b-all b-b " data-toggle="tooltip" title="" data-original-title="List">
+          <i class="fa fa-list "  aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-5 col-sm-6 col-xs-7 hidden-md hidden-sm ct" wfd-id="331">
+      <a href="#" id="compare-total" class="btn btn-link"></a>
+    </div>
+    <div class="col-lg-3 col-md-5 col-xs-4 col-sm-5 catesort" wfd-id="327">
+
+    </div>
+    <div class="col-lg-3 col-md-5 col-xs-3 col-sm-4 catesort" wfd-id="323">
+      <div class="input-group input-group-sm select-input" wfd-id="328">
+        <label class="input-group-addon" for="input-sort" wfd-id="330">Ordenar Por:</label>
+        <select id="input-sort" class="form-control" onchange="location = this.value;" wfd-id="329">
+          <option value="#" selected="selected">Defaul</option>
+          <option value="#">Nombre (A - Z)</option>
+          <option value="#">Nombre (Z - A)</option>
+          <option value="#">Precio (Mayor &gt; Menor)</option>
+          <option value="#">Precio (Menor &gt; Mayor)</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div >
+  <div  class="container bg-white"  *ngIf="!showGrid">
+    <div class="row productspm"  style="background-color: white !important;">
+      <div *ngFor="let item of articulos"  class="product-grid col-lg-3 col-md-4 col-sm-12" >
+        <app-articulos [articulo]='item'></app-articulos>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div  class="container bg-white"  *ngIf="showGrid">
+      <div class="row productspm"  style="background-color: white !important;">
+        <div *ngFor="let item of articulos"  class="product-grid col-lg-12" >
+          <app-articulos-list [articulo]='item'></app-articulos-list>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

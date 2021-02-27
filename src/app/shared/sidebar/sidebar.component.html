@@ -1,80 +1,31 @@
-<!-- ============================================================== -->
-<!-- Left Sidebar - style you can find in sidebar.scss  -->
-<!-- ============================================================== -->
-<aside class="left-sidebar">
-    <!-- Sidebar scroll-->
-    <div class="scroll-sidebar">
-        <!-- Sidebar navigation-->
-        <nav class="sidebar-nav">
-            <ul id="sidebarnav">
-                <li class="user-profile">
-                    <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><img src="./assets/images/users/profile.png" alt="user" /><span class="hide-menu">Steave Jobs </span></a>
-                    <ul aria-expanded="false" class="collapse">
-                        <li><a href="javascript:void()">My Profile </a></li>
-                        <li><a href="javascript:void()">My Balance</a></li>
-                        <li><a href="javascript:void()">Inbox</a></li>
-                        <li><a routerLink="account-settings" >Account Setting</a></li>
-                        <li><a routerLink="/login">Logout</a></li>
-                    </ul>
-                </li>
-                <li class="nav-devider"></li>
-                <li class="nav-small-cap">PERSONAL</li>
-                <li *ngFor="let item of menuItems">
-                  <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-gauge"></i>
-                    <span class="hide-menu">{{item.titulo}}
-                        <span class="label label-rouded label-themecolor pull-right">{{item.submenu.length}}</span>
-                    </span>
-                  </a>
+<nav class="navbar navbar-expand-lg  navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-                  <ul aria-expanded="false" class="collapse" >
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="catalogo/{{sidebarService.sede}}"><i class="fa fa-home" aria-hidden="true"></i>
+          <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item dropdown"  *ngFor="let item of menuItems" >
+        <a class="nav-link nav-link dropdown-toggle" href="#" *ngIf="!item.sesion">{{item.categoria}}</a>
+        <a class="nav-link dropdown-toggle" href="#" *ngIf="item.sesion" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {{item.categoria}}
+        </a>
 
-                      <li *ngFor="let subMenu of item.submenu">
-                            <a [routerLink]="subMenu.url" *ngIf="!subMenu.submenu"
-                              routerLinkActive="active"
-                              [routerLinkActiveOptions]="{exact: true}">
-                              {{subMenu.titulo}}
-                            </a>
-                            <a *ngIf="subMenu.submenu" class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-gauge"></i>
-                              <span class="hide-menu">{{subMenu.titulo}}
-                                  <span class="label label-rouded label-themecolor pull-right">{{subMenu.submenu.length}}</span>
-                              </span>
-                            </a>
-                                <ul aria-expanded="false" class="collapse" >
-                                  <li *ngFor="let chilSubMenu of subMenu.submenu" >
-                                      <a [routerLink]="chilSubMenu.url"
-                                        routerLinkActive="active"
-                                        [routerLinkActiveOptions]="{exact: true}"
-                                        *ngIf="!chilSubMenu.submenu">
-                                        {{chilSubMenu.titulo}}
-                                      </a>
-                                      <a *ngIf="chilSubMenu.submenu" class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-gauge"></i>
-                                        <span class="hide-menu">{{chilSubMenu.titulo}}
-                                            <span class="label label-rouded label-themecolor pull-right">{{chilSubMenu.submenu.length}}</span>
-                                        </span>
-                                      </a>
-                                          <ul aria-expanded="false" class="collapse" >
-                                            <li *ngFor="let cMenu of chilSubMenu.submenu" >
-                                                <a [routerLink]="cMenu.url"
-                                                  routerLinkActive="active"
-                                                  [routerLinkActiveOptions]="{exact: true}"
-                                                  *ngIf="!cMenu.submenu">
-                                                  {{cMenu.titulo}}
-
-                                                </a>
-                                            </li>
-                                        </ul>
-                                  </li>
-                              </ul>
-                      </li>
-                  </ul>
-                </li>
-
-            </ul>
-        </nav>
-        <!-- End Sidebar navigation -->
-    </div>
-    <!-- End Sidebar scroll-->
-</aside>
-<!-- ============================================================== -->
-<!-- End Left Sidebar - style you can find in sidebar.scss  -->
-<!-- ============================================================== -->
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown" *ngIf="item.sesion">
+          <a class="dropdown-item"  *ngFor="let subitem of item.sesion"
+              [routerLink]="['articulos', item.categoria, subitem.session, sidebarService.sede, item.id, subitem.id]"
+              [state]="{ orderId: 1234 }">{{subitem.session}}</a>
+        </div>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
