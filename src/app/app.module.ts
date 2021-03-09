@@ -1,3 +1,4 @@
+import { SharedModule } from './shared/shared.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -22,7 +23,8 @@ import { NopagefoundComponent } from './nopagefound/nopagefound.component';
     BrowserModule,
     AppRoutingModule,
     PagesModule,
-    AuthModule
+    AuthModule,
+    SharedModule
   ],
   bootstrap: [AppComponent]
 })

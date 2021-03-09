@@ -7,13 +7,15 @@ import { ChartsModule } from 'ng2-charts';
 import { HttpClientModule } from '@angular/common/http';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { ArticulosComponent } from './articulos/articulos.component';
+import { ArticulosModalComponent } from './articuloModal/articulos-modal.component';
 
 
 
 @NgModule({
   declarations: [
     ArticulosComponent,
-    ArticulosListComponent],
+    ArticulosListComponent,
+    ArticulosModalComponent],
   imports: [
     CommonModule,
     NgSelectModule,
@@ -24,7 +26,8 @@ import { ArticulosComponent } from './articulos/articulos.component';
   ],
   exports: [
     ArticulosComponent,
-    ArticulosListComponent
+    ArticulosListComponent,
+    ArticulosModalComponent
 
   ]
 })

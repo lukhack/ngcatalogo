@@ -1,0 +1,29 @@
+
+<div class="row" wfd-id="3557">
+  <div class="col-lg-6 col-12" wfd-id="3572">
+      <div id="imgModal" wfd-id="3573">
+        <a class="linkDetal" id="Img" (click)="onShowModal()">
+            <img src="{{base_url}}static/img/media/{{articulo?.folder}}/{{articulo?.media}}"
+                alt="{{articulo?.nombre}},{{articulo?.descripcion}},{{articulo?.metadata}}"
+                style="width: 100%;" width="100%">
+        </a>
+      </div>
+  </div>
+  <div class="col-lg-6 col-12" wfd-id="3558">
+      <h4><b><div id="nombre" style="text-transform:capitalize;text-align:justify;font-weight:bold" wfd-id="3571">{{articulo?.nombre}}</div></b></h4>
+      <hr>
+      <h3><div id="descripcion" style="text-transform:capitalize;text-align:justify" wfd-id="3570">
+        {{articulo?.descripcion}}
+      </div></h3>
+      <hr>
+      <h3><div wfd-id="3567"><span class="contenedor-text-gray p-1" wfd-id="3569"> Valor:</span> <span id="valor" class="contenedor-text-gray p-1" wfd-id="3568">${{articulo?.valorMe}}</span></div></h3>
+      <hr>
+      <div class="row"  style="text-transform:capitalize;" id="metadatamodal" wfd-id="3560">
+        <div class="contenedor-text-gray col-auto m-1 p-2" wfd-id="3565" *ngFor="let item of articulo?.metadata.split(',')">
+              <span wfd-id="3566">{{item}}</span>
+        </div>
+      </div>
+
+
+  </div>
+</div>

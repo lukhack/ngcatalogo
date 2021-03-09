@@ -3,8 +3,12 @@ import { dtArticlesModels } from './../../models/dtarticles.models';
 import { SidebarService } from './../../services/sidebar.service';
 import { map, takeWhile } from 'rxjs/operators';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef,  OnInit, ViewChild } from '@angular/core';
 import { interval } from 'rxjs';
+import { environment } from 'src/environments/environment';
+
+
+const base_url = environment.base_url;
 
 @Component({
   selector: 'app-catalogo',
@@ -14,12 +18,18 @@ import { interval } from 'rxjs';
 })
 export class CatalogoComponent implements OnInit {
 
+  @ViewChild('imagenZoom') private modalImg:ElementRef;
   public articulos:dtArticlesModels[];
+  public selectArticulo:dtArticlesModels;
   public currentURL='';
   public showGrid:boolean=false;
+  public base_url;
 
-  constructor(private router : Router, private activateRoute: ActivatedRoute, private siderService:SidebarService) {
+  constructor(private router : Router,
+    private activateRoute: ActivatedRoute,
+    private siderService:SidebarService) {
     this.currentURL = window.location.href;
+    this.base_url=base_url;
   }
 
   catalogoId:number=1;
@@ -45,15 +55,15 @@ export class CatalogoComponent implements OnInit {
       this.sessionId= parameter.sesionid==undefined?1:parameter.sesionid;
       this.getArticulos();
     });
+}
 
 
+  onSelectArticle(value: dtArticlesModels, idModal:string){
+      console.log(this.selectArticulo)
 
-
-
-
-
+      document.getElementById(idModal).click();
+      this.selectArticulo = value;
   }
-
 
 
   public getArticulos(){
@@ -80,7 +90,9 @@ export class CatalogoComponent implements OnInit {
 
   }
 
-
+  onCloseModal(){
+    this.modalImg.nativeElement.style.display ="none";
+  }
   showgrid(showGrid:boolean){
     this.showGrid=showGrid;
   }

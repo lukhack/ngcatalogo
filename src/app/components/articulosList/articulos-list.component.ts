@@ -1,6 +1,6 @@
 import { dtArticlesModels } from './../../models/dtarticles.models';
 import { DtCategoriaModels } from '../../models/dtcatadolo.moldels';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { environment } from 'src/environments/environment';
 
 
@@ -13,6 +13,7 @@ const base_url = environment.base_url
 })
 export class ArticulosListComponent implements OnInit {
   @Input() articulo:dtArticlesModels;
+  @Output("selectArticle") selectArticle:EventEmitter<dtArticlesModels>=new EventEmitter<dtArticlesModels>();
   public base_url;
 
   constructor() { }
@@ -24,6 +25,12 @@ export class ArticulosListComponent implements OnInit {
 
   remplaceSpace(value:string):string{
   return value.replace('\n',"<br/>")
+  }
+
+  onSelectArticle(articulo:dtArticlesModels){
+    this.selectArticle.emit(articulo);
+    const doc = document.querySelector<HTMLInputElement>('#imagenZoom')
+    doc.style.display = "block";
   }
 
 }

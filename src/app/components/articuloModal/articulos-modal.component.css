@@ -1,0 +1,12 @@
+.contenedor-text-gray {
+  background-color: grey;
+  color: white;
+}
+
+#Img {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#Img:hover {opacity: 0.7;}

@@ -62,7 +62,7 @@ Global Styles
   outline: none; }
 
 body {
-  background: #f7e8e3;
+  background: #9dc106;
   font-family: "Montserrat", sans-serif;
   margin: 0;
   overflow-x: hidden;
@@ -72,7 +72,7 @@ body {
 html {
   position: relative;
   min-height: 100%;
-  background: #f7e8e3;
+  background: #9dc106;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
 

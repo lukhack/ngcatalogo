@@ -48,12 +48,31 @@
   background-color: rgba(0,0,0,.15) !important;
 }
 
+a {
+  cursor: pointer;
+}
 body{
   font-family: Gotham, sans-serif;
   font-weight: 300;
   color: #313131;
   font-size: 14px;
   line-height: 20px;
+}
+
+
+.btnWhatsapp {
+  font-family: GothamPro;
+  background-color: #46a049;
+  color: white;
+  border-radius: 5px;
+  font-size: 14px;
+  letter-spacing: 0.8px;
+  padding: 9px 30px 7px 30px;
+  border: none;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  width: 105px;
+  cursor: pointer;
 }
 
 

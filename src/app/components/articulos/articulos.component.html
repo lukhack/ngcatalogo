@@ -1,10 +1,10 @@
 
 <div class="container-article"  >
   <div class="content-article-box">
-
-        <a class="linkDetal" data-toggle="modal" data-target="ModalArticle" update="ModalArticle" url="/search/368/">
+        <a class="linkDetal" (click)="onSelectArticle(articulo)" data-toggle="modal"  data-target="#articulo-modal"
+          data-target="ModalArticle" update="ModalArticle" url="/search/368/">
           <div style="position:relative">
-              <div class="anamatePicture2 pt-1 mb-0" title="{{articulo.metadata}}"
+              <div class="anamatePicture2 pt-1 mb-0" title="{{articulo.metadata}}" id="Img"
                    style="background:url({{base_url}}static/img/media/{{articulo.folder}}/{{articulo.media}}); margin:auto">
               </div>
           </div>
@@ -30,3 +30,5 @@
   </div>
 
 </div>
+
+

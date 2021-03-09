@@ -1,3 +1,4 @@
+import { ArticuloComponent } from './articulo/articulo.component';
 import { CatalogoComponent } from './catalogo/catalogo.component';
 
 
@@ -17,6 +18,8 @@ const routes: Routes = [
               { path: ':catalogo/:sesion/:sede/:catalodo/:sesionid',component: CatalogoComponent, data:{titulo: 'Articulos'} },
             ]
         },
+        { path:':articulo/:sesion/:sede/:catalodo/:sesionid/:articulo',component: ArticuloComponent, data:{titulo: 'Articulo'} },
+
         { path: ':sede', component: CatalogoComponent, data:{titulo: 'Catalogo'} },
         { path: '', component: CatalogoComponent, data:{titulo: 'Catalogo'} },
 

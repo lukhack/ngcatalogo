@@ -30,12 +30,11 @@
     </div>
   </div>
 </div>
-
 <div >
   <div  class="container bg-white"  *ngIf="!showGrid">
     <div class="row productspm"  style="background-color: white !important;">
       <div *ngFor="let item of articulos"  class="product-grid col-lg-3 col-md-4 col-sm-12" >
-        <app-articulos [articulo]='item'></app-articulos>
+        <app-articulos (selectArticle)="onSelectArticle($event,'openModalButtonV')" [articulo]='item'></app-articulos>
       </div>
     </div>
   </div>
@@ -43,9 +42,54 @@
     <div  class="container bg-white"  *ngIf="showGrid">
       <div class="row productspm"  style="background-color: white !important;">
         <div *ngFor="let item of articulos"  class="product-grid col-lg-12" >
-          <app-articulos-list [articulo]='item'></app-articulos-list>
+          <app-articulos-list [articulo]='item' (selectArticle)="selectArticulo = $event"></app-articulos-list>
         </div>
       </div>
     </div>
   </div>
+</div>
+
+<input type="hidden" id="openModalButtonV"  data-toggle="modal"  data-target="#ModalArticle" />
+
+<div id="ModalArticle" class="modal fade show " tabindex="-1" role="dialog"
+    aria-labelledby="Modal Articulo" style="display: none;" wfd-id="13" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document" wfd-id="3553">
+          <div class="modal-content" wfd-id="3554">
+            <div class="modal-header" wfd-id="3574">
+              <h5 class="modal-title"><div id="titleModal" style="text-transform:capitalize" wfd-id="3576">{{selectArticulo?.nombre}}</div></h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" wfd-id="3549">
+                <span aria-hidden="true" wfd-id="3575">×</span>
+              </button>
+            </div>
+            <div class="modal-body" wfd-id="3555">
+              <div class="container" wfd-id="3556">
+                  <app-articulos-modal [articulo]='selectArticulo'></app-articulos-modal>
+              </div>
+            </div>
+
+            <div class="modal-footer"  wfd-id="174">
+              <a class="whatsapp-send" data-source="https://basilos.online/catalogo/articulo/368/" whatsapp-number="573024073094">
+                <div  class="btnWhatsapp p-2"><i class="fa fa-whatsapp" aria-hidden="true">Whatsapp</i></div>
+              </a>
+            </div>
+          </div>
+
+        </div>
+  </div>
+
+<!-- The Modal -->
+<div id="imagenZoom" #imagenZoom  class="modal-img fade show" >
+
+  <!-- The Close Button -->
+  <span class="close-img close"  (click)="onCloseModal()"  data-dismiss="modal" >&times;</span>
+
+  <!-- Modal Content (The Image) -->
+  <img class="modal-content-img"
+      src="{{base_url}}static/img/media/{{selectArticulo?.folder}}/{{selectArticulo?.media}}"
+      alt="{{selectArticulo?.nombre}},{{selectArticulo?.descripcion}},{{selectArticulo?.metadata}}"
+      style="width: 100%;" width="100%">
+
+
+  <!-- Modal Caption (Image Text) -->
+  <div id="caption" >{{selectArticulo?.descripcion}}</div>
 </div>
