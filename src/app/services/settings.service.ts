@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class SettingsService {
   private linkTheme =  document.querySelector("#theme");
   constructor() {
-    console.log('setting services init');
+   // console.log('setting services init');
   }
 
 
@@ -26,7 +26,6 @@ export class SettingsService {
 
   checkCurrentTheme(){
     const links = document.querySelectorAll('.selector');
-    console.log(links);
     const themeselect = localStorage.getItem('theme');
     links.forEach(elem=>{
         elem.classList.remove('working');

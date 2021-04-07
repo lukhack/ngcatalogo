@@ -15,12 +15,12 @@ const routes: Routes = [
       children: [
         { path: 'articulos',  data:{titulo: 'Catalogo'},
             children:[
-              { path: ':catalogo/:sesion/:sede/:catalodo/:sesionid',component: CatalogoComponent, data:{titulo: 'Articulos'} },
+              { path: ':catalogo/:sesion/:catalodo/:sesionid',component: CatalogoComponent, data:{titulo: 'Articulos'} },
             ]
         },
         { path:':articulo/:sesion/:sede/:catalodo/:sesionid/:articulo',component: ArticuloComponent, data:{titulo: 'Articulo'} },
 
-        { path: ':sede', component: CatalogoComponent, data:{titulo: 'Catalogo'} },
+        { path: 'sede/:sede', component: CatalogoComponent, data:{titulo: 'Catalogo'} },
         { path: '', component: CatalogoComponent, data:{titulo: 'Catalogo'} },
 
       ]

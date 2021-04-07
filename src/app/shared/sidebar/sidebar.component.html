@@ -9,7 +9,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="catalogo/{{sidebarService.sede}}"><i class="fa fa-home" aria-hidden="true"></i>
+        <a class="nav-link" href="catalogo"><i class="fa fa-home" aria-hidden="true"></i>
           <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item dropdown"  *ngFor="let item of menuItems" >
@@ -20,7 +20,7 @@
 
         <div class="dropdown-menu" aria-labelledby="navbarDropdown" *ngIf="item.sesion">
           <a class="dropdown-item" *ngFor="let subitem of item.sesion"
-              [routerLink]="['catalogo/articulos', item?.categoria, subitem?.session, sidebarService.sede, item?.id, subitem?.id]"
+              [routerLink]="['catalogo/articulos', item?.categoria, subitem?.session,  item?.id, subitem?.id]"
               [state]="{ orderId: 1234 }">{{subitem.session}}</a>
         </div>
       </li>

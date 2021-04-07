@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Component, ElementRef,  OnInit, ViewChild } from '@angular/core';
 import { interval } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { SedesService } from '../../services/sede.service';
 
 
 const base_url = environment.base_url;
@@ -27,7 +28,8 @@ export class CatalogoComponent implements OnInit {
 
   constructor(private router : Router,
     private activateRoute: ActivatedRoute,
-    private siderService:SidebarService) {
+    private siderService:SidebarService,
+    private sedeSerivces:SedesService) {
     this.currentURL = window.location.href;
     this.base_url=base_url;
   }
@@ -47,8 +49,9 @@ export class CatalogoComponent implements OnInit {
 
     this.activateRoute.params.pipe(map(p => p))
     .subscribe(parameter=>{
-      console.log('parameters:',parameter);
-      this.siderService.sede = parameter.sede==undefined?1:parameter.sede;
+      this.sedeSerivces.processeSedeId(parameter.sede);
+      console.log('sedeId:',this.sedeSerivces.sedeid);
+
       this.siderService.tituloP = parameter.catalogo==undefined?"Catalogo":parameter.catalogo;
       this.siderService.tituloS = parameter.sesion==undefined?"Articulos":parameter.sesion;
       this.catalogoId= parameter.catalodo==undefined?1:parameter.catalodo;
@@ -75,7 +78,7 @@ export class CatalogoComponent implements OnInit {
       ).subscribe({
         next:value=>{
           try{
-            console.log("id:",value)
+            //console.log("id:",value)
             this.articulos= this.catalogo
             .find(c=>c.id==this.catalogoId).sesion
             .find(a=>a.id ==this.sessionId).articulos;

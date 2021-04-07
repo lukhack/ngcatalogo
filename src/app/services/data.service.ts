@@ -22,7 +22,7 @@ export class DataServices<T> implements OnInit {
 
   getAll(modelhttp: string): Observable<T[]> {
     const path = this.httpUrl + modelhttp;
-    console.log("path:" + path);
+    //console.log("path:" + path);
     const dt =   this.httpClient.get<T[]>(path);
     return dt;
   }

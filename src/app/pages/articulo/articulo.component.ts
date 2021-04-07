@@ -29,8 +29,7 @@ export class ArticuloComponent implements OnInit {
   ngOnInit(): void {
     this.activateRoute.params.pipe(map(p => p))
     .subscribe(parameter=>{
-      console.log('parameters:',parameter);
-      this.siderService.sede = parameter.sede==undefined?1:parameter.sede;
+      //this.siderService.sede = parameter.sede==undefined?1:parameter.sede;
       this.siderService.tituloP = parameter.catalogo==undefined?"Catalogo":parameter.catalogo;
       this.siderService.tituloS = parameter.sesion==undefined?"Articulos":parameter.sesion;
       this.siderService.tituloS = parameter.sesion==undefined?"Articulos":parameter.sesion;
